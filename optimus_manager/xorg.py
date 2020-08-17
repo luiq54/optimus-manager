@@ -211,9 +211,10 @@ def _generate_hybrid_amd(config, bus_ids, xorg_extra):
 
     text += _make_amd_device_section(config, bus_ids, xorg_extra)
 
-    text += "Section \"Screen\"\n" \
-            "\tIdentifier \"amd\"\n" \
-            "\tDevice \"amd\"\n" \
+    text += "Section \"OutputClass\"\n" \
+            "\tIdentifier \"iGPU\"\n" \
+            "\tMatchDriver \"amd\"\n" \
+            "\tDriver \"modesetting\"\n" \
             "EndSection\n\n"
 
     text += "Section \"Device\"\n" \
@@ -221,14 +222,14 @@ def _generate_hybrid_amd(config, bus_ids, xorg_extra):
             "\tDriver \"nvidia\"\n" \
             "EndSection\n\n"
 
-    text +="Section \"OutputClass\"\n" \
-           "\tIdentifier \"nvidia\"\n" \
-	       "\tMatchDriver \"nvidia-drm\"\n" \
-	       "\tDriver \"nvidia\"\n" \
-  	       "\tOption \"AllowEmptyInitialConfiguration\"\n" \
-	       "\tModulePath \"/usr/lib/nvidia/xorg\"\n" \
-	       "\tModulePath \"/usr/lib/xorg/modules\"\n" \
-           "EndSection\n\n"
+    text += "Section \"OutputClass\"\n" \
+            "\tIdentifier \"nvidia\"\n" \
+	        "\tMatchDriver \"nvidia-drm\"\n" \
+	        "\tDriver \"nvidia\"\n" \
+  	        "\tOption \"AllowEmptyInitialConfiguration\"\n" \
+	        "\tModulePath \"/usr/lib/nvidia/xorg\"\n" \
+	        "\tModulePath \"/usr/lib/xorg/modules\"\n" \
+            "EndSection\n\n"
 
     return text
 
