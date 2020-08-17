@@ -205,7 +205,6 @@ def _generate_hybrid_amd(config, bus_ids, xorg_extra):
 
     text = "Section \"ServerLayout\"\n" \
            "\tIdentifier \"layout\"\n" \
-           "\tScreen 0 \"amd\"\n" \
            "\tOption \"AllowNVIDIAGPUScreens\"\n" \
            "EndSection\n\n"
 
@@ -288,7 +287,7 @@ def _make_amd_device_section(config, bus_ids, xorg_extra):
     dri = int(config["amd"]["dri"])
 
     text = "Section \"Device\"\n" \
-           "\tIdentifier \"amdgpu\"\n"
+           "\tIdentifier \"AMDGPU\"\n"
     text += "\tDriver \"%s\"\n" % driver
     text += "\tBusID \"%s\"\n" % bus_ids["amd"]
     if config["amd"]["tearfree"] != "":
