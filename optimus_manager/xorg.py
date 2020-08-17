@@ -221,6 +221,15 @@ def _generate_hybrid_amd(config, bus_ids, xorg_extra):
             "\tDriver \"nvidia\"\n" \
             "EndSection\n\n"
 
+    text +="Section \"OutputClass\"\n" \
+           "\tIdentifier \"nvidia\"\n" \
+	       "\tMatchDriver \"nvidia-drm\"\n" \
+	       "\tDriver \"nvidia\"\n" \
+  	       "\tOption \"AllowEmptyInitialConfiguration\"\n" \
+	       "\tModulePath \"/usr/lib/nvidia/xorg\"\n" \
+	       "\tModulePath \"/usr/lib/xorg/modules\"\n" \
+           "EndSection\n\n"
+
     return text
 
 def _make_nvidia_device_section(config, bus_ids, xorg_extra):
